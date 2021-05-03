@@ -1,0 +1,7 @@
+{
+  "name": "my-cookbook",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
