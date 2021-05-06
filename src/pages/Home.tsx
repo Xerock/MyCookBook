@@ -9,7 +9,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 
-import { simplifyString, getRecipes } from "../main.js";
+import { simplifyString, getRecipes, store } from "../main.js";
 
 import RecipeCard from "../components/RecipeCard";
 import SearchBar from "../components/SearchBar";
@@ -35,12 +35,13 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Vos recettes</IonTitle>
-          <SearchBar onSearchChange={onSearchChange} />
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <SearchBar onSearchChange={onSearchChange} />
         {filteredSearch.map((recipe) => (
           <RecipeCard
+            key={recipe.name}
             id={recipe.id}
             name={recipe.name}
             description={recipe.description}

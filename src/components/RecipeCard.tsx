@@ -18,14 +18,16 @@ interface RecipeCardProps {
 
 const RecipeCard: React.FC<RecipeCardProps> = (recipe) => {
   return (
-    <IonCard key={recipe.name}>
+    <IonCard
+      onClick={() => {
+        window.localStorage["currentRecipe"] = JSON.stringify(recipe);
+      }}
+      routerLink={"/app/recipe"}
+    >
       <IonCardHeader>
         <IonCardTitle>{recipe.name}</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        <IonItem>
-          <IonLabel>{recipe.description}</IonLabel>
-        </IonItem>
         <IonItem>
           <IonIcon icon={timerOutline} slot="start" />
           <IonLabel>{recipe.time} min</IonLabel>
