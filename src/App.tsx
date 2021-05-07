@@ -7,6 +7,7 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Recipe from './pages/Recipe';
+import Create from './pages/Create';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,6 +37,7 @@ const App: React.FC = () => (
           <Route path="/app/" render={() => <Redirect to="/app/browse" />} exact={true} />
           <Route path="/app/browse" component={Home} exact={true} />
           <Route path="/app/recipe" component={Recipe} exact={true} />
+          <Route path="/app/create" component={Create} exact={true} />
         </IonRouterOutlet>
     </IonPage>
     </IonReactRouter>

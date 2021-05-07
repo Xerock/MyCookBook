@@ -7,24 +7,27 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonFab,
+  IonFabButton,
+  IonIcon,
 } from "@ionic/react";
+import { addOutline } from "ionicons/icons";
 
-import { simplifyString, getRecipes, store } from "../main.js";
+import { simplifyString, getRecipes } from "../main.js";
 
 import RecipeCard from "../components/RecipeCard";
 import SearchBar from "../components/SearchBar";
 
 const Home: React.FC = () => {
-  const recipes = getRecipes();
   const [searchText, setSearchText] = useState<string>("");
-  const [filteredSearch, setFilteredSearch] = useState(recipes);
+  const [filteredSearch, setFilteredSearch] = useState(getRecipes());
 
   const onSearchChange = (s: string) => {
     setSearchText(s);
   };
 
   useEffect(() => {
-    let tempSearchResult = recipes.filter((recipe) =>
+    let tempSearchResult = getRecipes().filter((recipe) =>
       simplifyString(recipe.name).includes(simplifyString(searchText))
     );
     setFilteredSearch([...tempSearchResult]);
@@ -48,6 +51,11 @@ const Home: React.FC = () => {
             time={recipe.time}
           />
         ))}
+        <IonFab vertical="bottom" horizontal="end" slot="fixed">
+          <IonFabButton routerLink={"/app/create"}>
+            <IonIcon icon={addOutline} />
+          </IonFabButton>
+        </IonFab>
       </IonContent>
     </IonPage>
   );

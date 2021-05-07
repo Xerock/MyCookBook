@@ -1,4 +1,3 @@
-import { Storage } from '@ionic/storage';
 const recipes = [
     {
         id: 0,
@@ -21,8 +20,14 @@ const recipes = [
 ];
 
 export const getRecipes = () => recipes;
+export const createRecipe = (name, time, description) => {
+    const recipe = {
+        id: recipes.length,
+        name: name,
+        description: description,
+        time: +time,
+    };
+    recipes.push(recipe);
+    console.log(recipe);
+};
 export const simplifyString = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
-export const store = new Storage({
-    name: 'LocalDB',
-  });
-store.create();
